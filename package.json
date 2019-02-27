@@ -12,7 +12,8 @@
     "fs": "0.0.1-security",
     "js-yaml": "^3.12.1",
     "json2yaml": "^1.1.0",
-    "yarn": "^1.13.0"
+    "yarn": "^1.13.0",
+    "yarn-install": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
