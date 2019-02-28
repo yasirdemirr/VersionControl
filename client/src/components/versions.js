@@ -2,277 +2,284 @@ import React from 'react';
 import yaml from 'yamljs';
 
 export default class Versions extends React.Component {
-state ={
-   name: ["XXX1","XXX2"],
-   
-   jsonApiVersion :"extensions/v1beta1",
-   JsonReplicas : "5",
-   olderVersion: [],
-   oldVersionExis: [],
-   temp :"",
-   tempDataJson:   {
-    "apiVersion": "",
-    "kind": "",
-    "metadata": {
-        "name": ""
-    },
-    "spec": {
-        "replicas": "",
-        "strategy": {
-            "type": "",
-            "rollingUpdate": {
-                "maxSurge": null,
-                "maxUnavailable": null
-            }
-        },
-        "template": {
+    state = {
+        name: ["XXX1", "XXX2"],
+
+        jsonApiVersion: "extensions/v1beta1",
+        JsonReplicas: "5",
+        olderVersion: [],
+        oldVersionExis: [],
+        temp: "",
+        tempDataJson: {
+            "apiVersion": "",
+            "kind": "",
             "metadata": {
-                "labels": {
-                    "app": ""
-                }
+                "name": ""
             },
             "spec": {
-                "containers": [
-                    {
-                        "name": "",
-                        "image": "",
-                        "env": [
-                            {
-                                "name": "",
-                                "value": ""
-                            }
-                        ],
-                        "livenessProbe": {
-                            "httpGet": {
-                                "path": "",
-                                "port": null
-                            },
-                            "initialDelaySeconds": null,
-                            "periodSeconds": null,
-                            "failureThreshold": null,
-                            "successThreshold": null
-                        },
-                        "readinessProbe": {
-                            "httpGet": {
-                                "path": "",
-                                "port": null
-                            },
-                            "initialDelaySeconds": null
-                        }
-                    }
-                ]
-            }
-        }
-    }
-},
-   jsonData: [],
-   tempInput : []
-}
-
-onChanceApp(e){
-    
-    this.setState({temp:e.target.value})
-   
-}
-SaveApp =() =>{
-    var newArray = this.state.name.slice();
-    var temp2 = this.state.temp;
-    newArray.push(temp2);
-    var tempJson =this.state.jsonData;
-    this.setState({name:newArray,tempDataJson:tempJson});
-}
-onChangesFile(e) {
-    let files =  e.target.files;
-
-    let reader = new FileReader();
-    reader.readAsText(files[0]);
-
-    reader.onload=(e) =>{
-      const yazi =e.target.result;
-    
-      var inputfile = e.target,
-     
-      yaml = require('js-yaml'),
-      obj = yaml.load(yazi, {encoding: 'utf-8'});
-      const jsonForm = JSON.stringify(obj);
-      var jsonParsed = JSON.parse(jsonForm);
-      console.log({jsonForm})
-      
-
-      this.setState({ jsonData: jsonParsed })
-     }
-    }
-      
-
-//       var versionData = JSON.parse(this.state.jsonData);
-      
-      
-//       var meta = versionData.apiVersion;
-//       var replicas = versionData.spec.replicas;
-
-//       this.setState({jsonApiVersion: meta })
-
-
-//     }
-//   }
-  checkApp(value){
-      if(value.target.value ==="XXX1"){
-         this.oldVersionDrop1(value.target.value);
-      }
-     else if (value.target.value==="XXX2"){
-        this.oldVersionDrop2(value.target.value);
-     }else{
-        this.oldVersionDrop3(value.target.value);
-     }
-  }
-  oldVersionDrop1 = (e) =>{
-      var olderArray = ["XX1","XX2"];
-        this.setState({olderVersion:olderArray,tempDataJson: {
-            "apiVersion": "extensions/v1beta1",
-            "kind": "Deployment",
-            "metadata": {
-                "name": "demo-app"
-            },
-            "spec": {
-                "replicas": "5",
+                "replicas": "",
                 "strategy": {
-                    "type": "RollingUpdate",
+                    "type": "",
                     "rollingUpdate": {
-                        "maxSurge": 1,
-                        "maxUnavailable": 0
+                        "maxSurge": null,
+                        "maxUnavailable": null
                     }
                 },
                 "template": {
                     "metadata": {
                         "labels": {
-                            "app": "demo-app"
+                            "app": ""
                         }
                     },
                     "spec": {
                         "containers": [
                             {
-                                "name": "demo-app",
-                                "image": "gsengun/nodejs-demo-app:1.0.0",
+                                "name": "",
+                                "image": "",
                                 "env": [
                                     {
-                                        "name": "PORT",
-                                        "value": "80"
+                                        "name": "",
+                                        "value": ""
                                     }
                                 ],
                                 "livenessProbe": {
                                     "httpGet": {
-                                        "path": "/",
-                                        "port": 80
+                                        "path": "",
+                                        "port": null
                                     },
-                                    "initialDelaySeconds": 3,
-                                    "periodSeconds": 5,
-                                    "failureThreshold": 3,
-                                    "successThreshold": 1
+                                    "initialDelaySeconds": null,
+                                    "periodSeconds": null,
+                                    "failureThreshold": null,
+                                    "successThreshold": null
                                 },
                                 "readinessProbe": {
                                     "httpGet": {
-                                        "path": "/",
-                                        "port": 80
+                                        "path": "",
+                                        "port": null
                                     },
-                                    "initialDelaySeconds": 1
+                                    "initialDelaySeconds": null
                                 }
                             }
                         ]
                     }
                 }
             }
-        }});
-  }
-  oldVersionDrop2 = (e) =>{
-    var olderArray = ["YY1","YY2"];
-      this.setState({olderVersion:olderArray,tempDataJson: {
-        "apiVersion": "extensions/v2beta2",
-        "kind": "Dep",
-        "metadata": {
-            "name": "demo-app"
         },
-        "spec": {
-            "replicas": "4",
-            "strategy": {
-                "type": "RollingUpdate",
-                "rollingUpdate": {
-                    "maxSurge": 1,
-                    "maxUnavailable": 0
-                }
-            },
-            "template": {
+        jsonData: [],
+        tempInput: []
+    }
+
+    onChanceApp(e) {
+
+        this.setState({ temp: e.target.value })
+
+    }
+    SaveApp = () => {
+        var newArray = this.state.name.slice();
+        var temp2 = this.state.temp;
+        newArray.push(temp2);
+        var tempJson = this.state.jsonData;
+        this.setState({ name: newArray, tempDataJson: tempJson });
+    }
+    onChangesFile(e) {
+        let files = e.target.files;
+
+        let reader = new FileReader();
+        reader.readAsText(files[0]);
+
+        reader.onload = (e) => {
+            const yazi = e.target.result;
+
+            var inputfile = e.target,
+
+                yaml = require('js-yaml'),
+                obj = yaml.load(yazi, { encoding: 'utf-8' });
+            const jsonForm = JSON.stringify(obj);
+            var jsonParsed = JSON.parse(jsonForm);
+            console.log({ jsonForm })
+
+
+            this.setState({ jsonData: jsonParsed })
+        }
+    }
+
+
+    //       var versionData = JSON.parse(this.state.jsonData);
+
+
+    //       var meta = versionData.apiVersion;
+    //       var replicas = versionData.spec.replicas;
+
+    //       this.setState({jsonApiVersion: meta })
+
+
+    //     }
+    //   }
+    checkApp(value) {
+        if (value.target.value === "XXX1") {
+            this.oldVersionDrop1(value.target.value);
+        }
+        else if (value.target.value === "XXX2") {
+            this.oldVersionDrop2(value.target.value);
+        } else {
+            this.oldVersionDrop3(value.target.value);
+        }
+    }
+    oldVersionDrop1 = (e) => {
+        var olderArray = ["XX1", "XX2"];
+        this.setState({
+            olderVersion: olderArray, tempDataJson: {
+                "apiVersion": "extensions/v1beta1",
+                "kind": "Deployment",
                 "metadata": {
-                    "labels": {
-                        "app": "demo-app"
-                    }
+                    "name": "demo-app"
                 },
                 "spec": {
-                    "containers": [
-                        {
-                            "name": "demo-app",
-                            "image": "gsengun/nodejs-demo-app:1.0.0",
-                            "env": [
-                                {
-                                    "name": "PORT",
-                                    "value": "80"
-                                }
-                            ],
-                            "livenessProbe": {
-                                "httpGet": {
-                                    "path": "/",
-                                    "port": 80
-                                },
-                                "initialDelaySeconds": 3,
-                                "periodSeconds": 5,
-                                "failureThreshold": 3,
-                                "successThreshold": 1
-                            },
-                            "readinessProbe": {
-                                "httpGet": {
-                                    "path": "/",
-                                    "port": 80
-                                },
-                                "initialDelaySeconds": 1
-                            }
+                    "replicas": "5",
+                    "strategy": {
+                        "type": "RollingUpdate",
+                        "rollingUpdate": {
+                            "maxSurge": 1,
+                            "maxUnavailable": 0
                         }
-                    ]
+                    },
+                    "template": {
+                        "metadata": {
+                            "labels": {
+                                "app": "demo-app"
+                            }
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "demo-app",
+                                    "image": "gsengun/nodejs-demo-app:1.0.0",
+                                    "env": [
+                                        {
+                                            "name": "PORT",
+                                            "value": "80"
+                                        }
+                                    ],
+                                    "livenessProbe": {
+                                        "httpGet": {
+                                            "path": "/",
+                                            "port": 80
+                                        },
+                                        "initialDelaySeconds": 3,
+                                        "periodSeconds": 5,
+                                        "failureThreshold": 3,
+                                        "successThreshold": 1
+                                    },
+                                    "readinessProbe": {
+                                        "httpGet": {
+                                            "path": "/",
+                                            "port": 80
+                                        },
+                                        "initialDelaySeconds": 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 }
             }
-        }
-    }});
-}
-oldVersionDrop3 = (e) =>{
-    var olderArray = ["ZZ1","ZZ2"];
-    var tempJson =this.state.jsonData;
-      this.setState({olderVersion:olderArray,tempDataJson:tempJson});
-}
+        });
+    }
+    oldVersionDrop2 = (e) => {
+        var olderArray = ["YY1", "YY2"];
+        this.setState({
+            olderVersion: olderArray, tempDataJson: {
+                "apiVersion": "extensions/v2beta2",
+                "kind": "Dep",
+                "metadata": {
+                    "name": "demo-app"
+                },
+                "spec": {
+                    "replicas": "4",
+                    "strategy": {
+                        "type": "RollingUpdate",
+                        "rollingUpdate": {
+                            "maxSurge": 1,
+                            "maxUnavailable": 0
+                        }
+                    },
+                    "template": {
+                        "metadata": {
+                            "labels": {
+                                "app": "demo-app"
+                            }
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "demo-app",
+                                    "image": "gsengun/nodejs-demo-app:1.0.0",
+                                    "env": [
+                                        {
+                                            "name": "PORT",
+                                            "value": "80"
+                                        }
+                                    ],
+                                    "livenessProbe": {
+                                        "httpGet": {
+                                            "path": "/",
+                                            "port": 80
+                                        },
+                                        "initialDelaySeconds": 3,
+                                        "periodSeconds": 5,
+                                        "failureThreshold": 3,
+                                        "successThreshold": 1
+                                    },
+                                    "readinessProbe": {
+                                        "httpGet": {
+                                            "path": "/",
+                                            "port": 80
+                                        },
+                                        "initialDelaySeconds": 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        });
+    }
+    oldVersionDrop3 = (e) => {
+        var olderArray = ["ZZ1", "ZZ2"];
+        var tempJson = this.state.jsonData;
+        this.setState({ olderVersion: olderArray, tempDataJson: tempJson });
+    }
 
     render() {
         return (<div class='row' style={containerStyle}>
             <div class="col-md-12">
-            
+
                 <div class="form-group " style={formStyle}>
-                <div class="col-md-3"></div>
-                    <label class="control-label col-md-2" style={{fontSize:22,marginLeft:-30}}>Select Application:</label>
-                    <div class="col-md-2"> 
-                   
-                        <select class="bs-select form-control" onInput = {(value) => this.checkApp(value)}>
-                                {this.state.name.map(appName=>(
-                                    <option >{appName} </option>
-                                ))}
-                            
-                      
-                             </select>
-                           
-                           
-                       
+                    <div class="col-md-3"></div>
+                    <label class="control-label col-md-2" style={{ fontSize: 22, marginLeft: -30 }}>Select Application:</label>
+                    <div class="col-md-2">
+
+                        <select class="bs-select form-control" onInput={(value) => this.checkApp(value)}>
+
+                            <option>----select----</option>
+                            {this.state.name.map(appName => (
+
+                                <option >{appName} </option>
+                            ))}
+
+
+                        </select>
+
+
+
                     </div>
                     <div class="col-md-2">
-                    <a class="btn dark  btn-outline sbold" data-toggle="modal" href="#responsive2" > ADD NEW APPLICATION </a>
+                        <a class="btn dark  btn-outline sbold" data-toggle="modal" href="#responsive2" > ADD NEW APPLICATION </a>
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-3"></div>
-                </div>
-                
+
             </div>
 
             <div style={cardStyle} >
@@ -293,11 +300,11 @@ oldVersionDrop3 = (e) =>{
 
                                 <div class="col-md-6"   >
                                     <select href="#responsive3" class="bs-select form-control " style={{ backgroundColor: '#E1E5EC', marginLeft: 120, marginTop: 30 }}>
-                                        {this.state.olderVersion.map(older =>(
+                                        {this.state.olderVersion.map(older => (
                                             <option>{older}</option>
-                                        ))}                                 
-                                        
-                                        
+                                        ))}
+
+
                                     </select>
 
                                 </div>
@@ -410,36 +417,291 @@ oldVersionDrop3 = (e) =>{
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                            <h4 class="modal-title">Responsive &amp; Scrollable</h4>
+                                            <h4 class="modal-title">Change Version</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="slimScrollDiv" style={{ position: 'relative', overflow: 'hidden', width: 'auto', height: 300 }}><div class="scroller" style={{ height: 300, overflow: 'hidden', width: 'auto' }} data-always-visible="1" data-rail-visible1="1" data-initialized="1">
+                                            <div class="slimScrollDiv" style={{ position: 'relative', overflow: 'hidden', width: 'auto', height: 700 }}><div class="scroller" style={{ height: 700, overflowY: ' scroll', width: 'auto' }} data-always-visible="1" data-rail-visible1="1" data-initialized="1">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h4></h4>
 
-                                                        <h3>apiVersion:</h3>
-
-                                                        <h3>apiVersion:</h3>
-
-                                                        <h3>apiVersion:</h3>
-
-                                                        
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">apiVersion:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.apiVersion : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">kind:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.kind : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">metadata:</label>
+                                                        </div>
 
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">name:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.name : null} /> </p>
+                                                        </div>
+                                                    </div>
 
-                                                        <p>
-                                                            <input type="text" class="col-md-12 form-control"  value= {this.state.tempDataJson!=''? this.state.tempDataJson.apiVersion:null}/> </p>
-                                                        <br />
-                                                        <p>
-                                                            <input type="text" class="col-md-12 form-control" value = {this.state.tempDataJson!=''?  this.state.tempDataJson.spec.replicas:null} /> </p>
-                                                        <br />
-                                                        <p>
-                                                            <input type="text" class="col-md-12 form-control" value = {this.state.tempDataJson!=''? this.state.tempDataJson.kind:null} /> </p>
-                                                        <br />
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">spec:</label>
+                                                        </div>
 
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">replicas:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.replicas : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">strategy:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">type:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.type : null} /> </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">rollingUpdate:</label>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">maxSurge:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.maxSurge : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">maxUnavailable:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.maxUnavailable : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">template:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">metadata:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">labels:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">app:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.app : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">spec:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">containers:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">- name:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.name : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">image:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.image : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">env:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">- name:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.name : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">value:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.value : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">livenessProbe:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">httpGet:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">path:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.path : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">port:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.port : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">initialDelaySeconds:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.initialDelaySeconds : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">periodSeconds:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.periodSeconds : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">failureThreshold:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.failureThreshold : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">successThreshold:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.successThreshold : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">readinessProbe:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label style={{ fontWeight: 'bold' }} class="control-label">httpGet:</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">path:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.path : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">port:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.port : null} /> </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4" style={{ marginTop: 25 }}>
+                                                            <label class="control-label">initialDelaySeconds:</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>
+                                                                <input type="text" class="col-md-12 form-control" defaultValue={this.state.tempDataJson != '' ? this.state.tempDataJson.initialDelaySeconds : null} /> </p>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div><div class="slimScrollBar" style={{ width: 7, position: ' absolute', top: 0, opacity: 0.4, display: 'none', borderRadius: 7, Zindex: 99, right: 1, height: 300 }}></div><div class="slimScrollRail" style={{ width: 7, height: '100%', position: 'absolute', top: 0, display: 'none', borderRadius: 7, opacity: 0.2, Zindex: 90, right: 1 }}></div></div>
                                         </div>
@@ -456,7 +718,7 @@ oldVersionDrop3 = (e) =>{
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button"  class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                             <h4 class="modal-title">Responsive &amp; Scrollable</h4>
                                         </div>
                                         <div class="modal-body">
@@ -470,21 +732,8 @@ oldVersionDrop3 = (e) =>{
                                                     <div class="col-md-6">
 
                                                         <p>
-                                                            <input type="text" class="col-md-12 form-control"  onChange={(e)=> {this.onChanceApp(e)}}/> </p>
+                                                            <input type="text" class="col-md-12 form-control" onChange={(e) => { this.onChanceApp(e) }} /> </p>
                                                         <br />
-
-                                                        {/* <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                            <span class="btn green btn-file">
-                                                                <span class="fileinput-new"> Select file </span>
-                                                                <span class="fileinput-exists"> Change </span>
-                                                                <input type="hidden" /><input type="file" name="..." /> </span>
-                                                            <span class="fileinput-filename"> </span> &nbsp;
-                                                        <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
-                                                        </div> */}
-
-     
-
-
                                                     </div>
 
 
@@ -492,15 +741,15 @@ oldVersionDrop3 = (e) =>{
 
                                             </div><div class="slimScrollBar" style={{ width: 7, position: ' absolute', top: 0, opacity: 0.4, display: 'none', borderRadius: 7, Zindex: 99, right: 1, height: 100 }}></div><div class="slimScrollRail" style={{ width: 7, height: '100%', position: 'absolute', top: 0, display: 'none', borderRadius: 7, opacity: 0.2, Zindex: 90, right: 1 }}></div></div>
                                         </div>
-                                       
-                                       
+
+
                                         <div class="modal-footer">
-                                        <input type="file" onChange={(e)=> this.onChangesFile(e)} name="name"/>
-                                        <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
-                                            <button type="button" onClick = {this.SaveApp} class="btn green">Save changes</button>  </div>
-                                     
-                                           
-                                      
+                                            <input type="file" onChange={(e) => this.onChangesFile(e)} name="name" />
+                                            <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                                            <button type="button" onClick={this.SaveApp} class="btn green">Save changes</button>  </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -511,7 +760,7 @@ oldVersionDrop3 = (e) =>{
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                            <h4 class="modal-title">Responsive &amp; Scrollable</h4>
+                                            <h4 class="modal-title"></h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="slimScrollDiv" style={{ position: 'relative', overflow: 'hidden', width: 'auto', height: 500 }}><div class="scroller" style={{ height: 300, overflow: 'hidden', width: 'auto' }} data-always-visible="1" data-rail-visible1="1" data-initialized="1">
@@ -520,49 +769,9 @@ oldVersionDrop3 = (e) =>{
                                                     <div class="col-md-6">
 
                                                         <h2>
-                                                            apiVersion: extensions/v1beta1<br />
-                                                            kind: Deployment<br />
-                                                            metadata:<br />
-                                                            name: demo-app<br />
-                                                            spec:<br />
-                                                            replicas: 5<br />
-                                                            strategy:<br />
-                                                            type: RollingUpdate<br />
-                                                            rollingUpdate:<br />
-                                                            maxSurge: 1<br />
-                                                            maxUnavailable: 0<br />
-                                                            template:<br />
-                                                            metadata:<br />
-                                                            labels:<br />
-                                                            app: demo-app<br />
-                                                            spec:<br />
-                                                            containers:<br />
-                                                            - name: demo-app<br />
-                                                            image: gsengun/nodejs-demo-app:1.0.0 <br />
-                                                            env:
-                                                            - name: PORT
-                                                              value: "80"
-                                                            livenessProbe:
-                                                              httpGet:
-                                                                path: /
-                                                                port: 80
-                                                              initialDelaySeconds: 3
-                                                              periodSeconds: 5
-                                                              failureThreshold: 3
-                                                              successThreshold: 1
-                                                            readinessProbe:
-                                                              httpGet:
-                                                                path: /
-                                                                port: 80
-                                                              initialDelaySeconds: 1
-                                                    
-                                                    
-                                                    
-                                                    
-                                                     </h2>
 
 
-
+                                                        </h2>
                                                     </div>
 
 
@@ -572,7 +781,7 @@ oldVersionDrop3 = (e) =>{
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
-                                            <button type="button" class="btn green">Save changes</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -650,7 +859,7 @@ const cardStyle = {
 
 const buttonStyle = {
 
-    marginLeft: '1500px',
+    marginLeft: '1650px',
     height: '45px',
     width: '120px'
 }
